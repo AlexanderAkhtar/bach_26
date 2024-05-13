@@ -30,15 +30,10 @@ POSE_PAIRS = [ ["Neck", "RShoulder"], ["Neck", "LShoulder"], ["RShoulder", "RElb
 
 inWidth = args.width
 inHeight = args.height
-
 net = cv.dnn.readNetFromTensorflow("graph_opt.pb")
-
 cap = cv.VideoCapture(args.input if args.input else 0)
 
-
-
 c = time.time()
-
 a = 0
 
 with open("result.csv", mode="w", newline='') as csvfile:
@@ -52,7 +47,6 @@ with open("result.csv", mode="w", newline='') as csvfile:
             cv.waitKey()
             break
         a = a+1
-
 
         frameWidth = frame.shape[1]
         frameHeight = frame.shape[0]
@@ -91,29 +85,12 @@ with open("result.csv", mode="w", newline='') as csvfile:
                 cv.ellipse(frame, points[idFrom], (3, 3), 0, 0, 360, (0, 0, 255), cv.FILLED)
                 cv.ellipse(frame, points[idTo], (3, 3), 0, 0, 360, (0, 0, 255), cv.FILLED)
 
-
-                
-                
                 d = time.time()
                 writer.writerow({"frame nummer": a, "x=": points[idTo][0], "y=": points[idTo][1], "time=": d-c})
                 writer.writerow({"frame nummer": a, "x=": points[idFrom][0], "y=": points[idFrom][1], "time=": d-c})
-                
-                
-                
-                
-                #writer.writerow(points[idTo])
-                #writer.writerow(points[idFrom])
-                
-
-                #print("frame nummer": a.tostring(), "x=": points[idFrom][0], "y=": points[idFrom][1])
-                #print(points[idFrom])
-                #print(a.tostring)
-            
-
 
         t, _ = net.getPerfProfile()
         freq = cv.getTickFrequency() / 1000
         cv.putText(frame, '%.2fms' % (t / freq), (10, 20), cv.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0))
-
         cv.imshow('OpenPose using OpenCV', frame)
   
