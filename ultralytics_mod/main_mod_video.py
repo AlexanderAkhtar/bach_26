@@ -2,6 +2,7 @@ import cv2
 import argparse
 import csv
 import time
+from videoreader_mod.video_reader import VideoReader
 
 from ultralytics import YOLO
 import supervision as sv
@@ -31,12 +32,11 @@ def main():
         cap = cv2.VideoCapture(0)
         cap.set(cv2.CAP_PROP_FRAME_WIDTH, frame_width)
         cap.set(cv2.CAP_PROP_FRAME_HEIGHT, frame_height)
-    else if args.video != ''
-        cap = cv2.VideoCapture(file_name)
-        cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
-        cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
-        if not cap.isOpened():
-            raise IOError('Video {} cannot be opened'.format(self.file_name))
+    if args.video != '':
+        frame_provider = VideoReader(args.video)
+        is_video = True
+    base_height = args.height_size
+    fx = args.fx
     else 
         
 
