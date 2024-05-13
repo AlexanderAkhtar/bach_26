@@ -17,7 +17,7 @@ def parse_arguments() -> argparse.Namespace:
     )
   parser.add_argument(
         '--video', 
-        file_name='Path to video file', ##might need to be help not file_name
+        help='Path to video file', ##might need to be help not file_name
         type=str, 
         default=''
     )
@@ -27,6 +27,8 @@ def parse_arguments() -> argparse.Namespace:
 
 def main():
     args = parse_arguments()
+    if args.video == '' and args.webcam == '':
+        raise ValueError('Either --video or --webcam has to be provided')
     if args.webcam != ''
         frame_width, frame_height = args.webcam_resolution
         cap = cv2.VideoCapture(0)
@@ -37,9 +39,6 @@ def main():
         is_video = True
     base_height = args.height_size
     fx = args.fx
-    else 
-        
-
     model = YOLO("yolov8l.pt")
 
     c = time.time()
