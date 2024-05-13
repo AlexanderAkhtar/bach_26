@@ -1,6 +1,6 @@
 # To use Inference Engine backend, specify location of plugins:
 # export LD_LIBRARY_PATH=/opt/intel/deeplearning_deploymenttoolkit/deployment_tools/external/mklml_lnx/lib:$LD_LIBRARY_PATH
-import cv2 as cv
+import cv2 as cv ##https://github.com/quanhua92/human-pose-estimation-opencv
 import numpy as np
 import argparse
 import csv
