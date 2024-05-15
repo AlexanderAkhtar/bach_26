@@ -48,7 +48,6 @@ def main():
                 x1, y1, x2, y2 = detections.xyxy[i].astype(int)
                 if (detections.class_id[i].astype(int) == 0):
                     d = time.time()
-                    writer.writerow({"frame nummer": detections.class_id[i].astype(int)})
                     writer.writerow({"frame nummer": a , "x1=": x1, "y1=": y1,"x2=": x2, "y2=": y2, "time=": d-c})
 
             a = a+1
