@@ -2,14 +2,14 @@ import cv2
 import argparse
 import csv
 import time
-from videoreader_mod.video_reader import VideoReader
+from video_reader import VideoReader
 
 from ultralytics import YOLO
 import supervision as sv
 
 def parse_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description= "YOLOv8 live")
-  parser.add_argument(
+    parser.add_argument(
         '--video', 
         help='Path to video file', ##might need to be help not file_name
         type=str, 
@@ -25,8 +25,8 @@ def main():
     if args.video != '':
         frame_provider = VideoReader(args.video)
         is_video = True
-    base_height = args.height_size
-    fx = args.fx
+    base_height = 1920
+    #fx = args.fx
     model = YOLO("yolov8l.pt")
     c = time.time()
     a = 1
@@ -46,8 +46,10 @@ def main():
             detections = sv.Detections.from_ultralytics(result)
             for i in range(len(detections)):
                 x1, y1, x2, y2 = detections.xyxy[i].astype(int)
-                d = time.time()
-                writer.writerow({"frame nummer": a, "x1=": x1, "y1=": y1,"x2=": x2, "y2=": y2, "time=": d-c})
+                if (detections.class_id[i].astype(int) == 0):
+                    d = time.time()
+                    writer.writerow({"frame nummer": detections.class_id[i].astype(int)})
+                    writer.writerow({"frame nummer": a , "x1=": x1, "y1=": y1,"x2=": x2, "y2=": y2, "time=": d-c})
 
             a = a+1
             frame = box_annotator.annotate(scene=frame, detections=detections)
