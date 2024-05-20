@@ -1,0 +1,2 @@
+frame number,total time taken,total number of predictions,total number of false positives,total number of false negatives,predicition accuracy (correct estimation/total estimation),FPS frame number/total time taken,CPU max usage,CPU avg usage,GPU max usage,GPU avg usage,Memory max usage,Memory avg usage
+2691,209.38137984275812,15334,1029,2559,0.9328942219903482,12.852145697104946,21.981,4.087110169491526,44.0,31.785310734463277,37.0,36.76553672316384
