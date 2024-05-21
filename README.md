@@ -9,6 +9,6 @@ The gen folder containes the contains a generalised format of the datacollection
 
 Result folder contains the raw result data gatherd from the tests of the models.
 
-the compare results of the test compare methods used on the test data.
+The compare results of the test compare methods used on the test data.
 
-the 
+The annotated true result folder contains the true result data used to evaluate the test result data.
